@@ -34,7 +34,6 @@ export default {
   },
   computed: {
     pokemonDataContainerStyle () {
-      console.log(this.pokemonData.attacks.length)
       return this.pokemonData.attacks.length > 1 ? [this.$style.pokemonDataContainer, this.$style.pokemonDataContainerTwoAttacks] : this.$style.pokemonDataContainer
     }
   }

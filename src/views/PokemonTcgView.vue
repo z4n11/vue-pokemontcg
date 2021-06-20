@@ -1,15 +1,16 @@
 <template>
   <div>
-    <LoadingScreen
-      v-show="true"
-      :fadeOut="!loading"
-    />
+    <LoadingScreen :fadeOut="!loading" />
     <div :class="$style.layout">
 
       <Header @setSearchData="searchData = $event" />
       <PokemonCardsList
+        v-show="!isMobile"
         :searchData="searchData"
-        @setLoading="loading=$event"
+      />
+      <MobilePokemonCardsCarousel
+        v-show="isMobile"
+        :searchData="searchData"
       />
     </div>
   </div>
@@ -18,7 +19,10 @@
 <script>
 import Header from '../components/home/Header'
 import PokemonCardsList from '../components/home/PokemonCardsList'
+import MobilePokemonCardsCarousel from '../components/home/MobilePokemonCardsCarousel.vue'
 import LoadingScreen from '../components/LoadingScreen'
+import { getPokemonCards } from '../services/api-service'
+import { mapMutations, mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -29,7 +33,25 @@ export default {
   components: {
     LoadingScreen,
     Header,
-    PokemonCardsList
+    PokemonCardsList,
+    MobilePokemonCardsCarousel
+  },
+  computed: {
+    ...mapState(['pokemonCards'])
+  },
+  async created () {
+    this.loading = true
+    try {
+      if (this.pokemonCards.length === 0) {
+        const response = await getPokemonCards()
+        this.setPokemonCards(response.data.sort((a, b) => a.name.localeCompare(b.name)))
+      }
+    } finally {
+      this.loading = false
+    }
+  },
+  methods: {
+    ...mapMutations(['setPokemonCards'])
   }
 }
 </script>

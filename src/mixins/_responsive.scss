@@ -1,0 +1,7 @@
+@mixin device($dev){
+  @if $dev == mobile {
+    @media only screen and (max-width: 767px){
+      @content;
+    }
+  }
+}

@@ -58,11 +58,15 @@ export default {
   methods: {
     ...mapMutations(['setSelectedPokemon']),
     async buildRelatedCardsArray () {
-      const response = await getRelatedPokemonCard(this.$route.params.pokename)
-      const relatedCards = this.mapRelatedCards(response.data)
-      const selectedPokemonCopy = JSON.parse(JSON.stringify(this.selectedPokemon))
-      selectedPokemonCopy.relatedCards = relatedCards
-      this.setSelectedPokemon(selectedPokemonCopy)
+      try {
+        const response = await getRelatedPokemonCard(this.$route.params.pokename)
+        const relatedCards = this.mapRelatedCards(response.data)
+        const selectedPokemonCopy = JSON.parse(JSON.stringify(this.selectedPokemon))
+        selectedPokemonCopy.relatedCards = relatedCards
+        this.setSelectedPokemon(selectedPokemonCopy)
+      } catch {
+        console.log(this.$t('cantFoundRelatedPokemon'))
+      }
     },
     mapRelatedCards (relatedCards) {
       const index = relatedCards.findIndex(card => card.id === this.selectedPokemon.id)
@@ -91,6 +95,16 @@ export default {
   border-top-left-radius: 4rem;
   box-shadow: 0rem 2rem 4rem;
   align-items: center;
+  @include device("mobile") {
+    grid-template-areas: "card" "pokemonData" !important;
+    grid-template-rows: 70rem 1fr;
+    grid-template-columns: none;
+    height: 95%;
+    width: 100%;
+    border-top-right-radius: 4rem;
+    border-bottom-left-radius: 0;
+    align-self: flex-end;
+  }
 }
 .pokemonCard {
   display: flex;
@@ -103,5 +117,8 @@ export default {
   width: 100vw;
   display: grid;
   justify-items: flex-end;
+  @include device("mobile") {
+    overflow: auto;
+  }
 }
 </style>

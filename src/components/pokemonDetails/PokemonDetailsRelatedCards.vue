@@ -1,5 +1,5 @@
 <template>
-  <div style="display: grid; position: relative">
+  <div :class="$style.relatedCardsContainer">
     <div
       v-if="cardFilterStyle.length > 0"
       :class="cardFilterStyle"
@@ -7,7 +7,7 @@
     >
       <eye-icon size="0.9x" />
       <span style="padding-left: 1rem">
-        ver cartas relacionadas
+        {{$tc('seeRelatedCards', pokemonData.relatedCards.length)}}
       </span>
     </div>
     <div
@@ -102,5 +102,10 @@ export default {
   &:hover {
     cursor: pointer;
   }
+}
+.relatedCardsContainer {
+  display: grid;
+  position: relative;
+  padding-right: 2rem;
 }
 </style>

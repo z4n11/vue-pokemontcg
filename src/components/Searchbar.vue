@@ -5,7 +5,7 @@
       :class="$style.input"
       v-model="searchData"
       type="text"
-      placeholder="Procure um pokémon!"
+      :placeholder="$t('searchAPokemonMessage')"
     >
     <search-icon
       size="1.5x"
@@ -28,7 +28,7 @@ export default {
   props: {
     width: {
       type: String,
-      default: '20rem'
+      default: '40vw'
     }
   },
   watch: {

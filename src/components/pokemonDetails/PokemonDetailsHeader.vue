@@ -1,11 +1,11 @@
 <template>
-  <div :class="[$style.header, $style.title]">
+  <div :class="[$style.headerContainer, $style.title]">
     <div style="grid-area: pokeName">
       <span>{{pokemonData.name}}</span>
       <span :class="[$style.font_xs, $style.centerFlex]">{{pokemonData.id}}</span>
     </div>
     <div style="grid-area: type; align-self: center;">
-      <span :class="$style.subtitle">Tipo</span>
+      <span :class="$style.subtitle">{{$tc('type', pokemonData.types.length)}}</span>
       <div :class="$style.centerFlex">
         <TypeTag
           v-for="type in pokemonData.types"
@@ -15,12 +15,12 @@
       </div>
     </div>
     <div style="grid-area: strong">
-      <span :class="$style.subtitle">Resistencias</span>
+      <span :class="$style.subtitle">{{$tc('resistances', resistancesLength)}}</span>
       <span
         v-if="!pokemonData.resistances"
         :class="[$style.centerFlex, $style.font_xs]"
         style="height: 2.5rem"
-      >Sem resistencias</span>
+      >{{$t('noResistances')}}</span>
       <div
         :class="$style.centerFlex"
         v-else
@@ -36,12 +36,12 @@
       </div>
     </div>
     <div style="grid-area: weaknesses">
-      <span :class="$style.subtitle">Fraquezas</span>
+      <span :class="$style.subtitle">{{$tc('weaknesses', weaknessesLength)}}</span>
       <span
         v-if="!pokemonData.weaknesses"
         :class="[$style.centerFlex, $style.font_xs]"
         style="height: 2.5rem"
-      >Sem fraquezas</span>
+      >{{$t('noWeaknesses')}}</span>
       <div
         :class="$style.centerFlex"
         v-else
@@ -73,11 +73,19 @@ export default {
   components: {
     TypeTag,
     PokemonDetailsLore
+  },
+  computed: {
+    weaknessesLength () {
+      return this.pokemonData.weaknesses ? this.pokemonData.weaknesses.length : 0
+    },
+    resistancesLength () {
+      return this.pokemonData.resistances ? this.pokemonData.resistances.length : 0
+    }
   }
 }
 </script>
 <style lang="scss" module>
-.header {
+.headerContainer {
   display: grid;
   grid-template-areas:
     "pokeName type lore"
@@ -85,6 +93,14 @@ export default {
   grid-template-rows: min-content 1fr;
   grid-template-columns: 25% 25% 1fr;
   overflow: hidden;
+  @include device("mobile") {
+    grid-template-areas:
+      "pokeName type"
+      "strong weaknesses"
+      "lore lore";
+    grid-template-columns: unset;
+    grid-template-rows: min-content 1fr 1fr;
+  }
 }
 .title {
   font-size: 3rem;

@@ -54,15 +54,16 @@ export default {
   background: rgba(0, 0, 0, 0.2);
   height: 100vh;
   width: 100vw;
-  z-index: 1;
+  z-index: 9998;
 }
 .modalContainer {
   background-color: white;
   border-radius: 2rem;
   position: relative;
-  z-index: 2;
+  z-index: 9999;
   padding: 1rem;
   box-shadow: 1rem 1rem 1rem;
+  overflow: hidden;
 }
 .fadeIn {
   visibility: visible;

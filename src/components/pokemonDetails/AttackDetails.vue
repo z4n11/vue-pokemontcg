@@ -10,14 +10,17 @@
         style="padding-left: 1rem"
       >{{attackData.name}}</span>
     </div>
-    <div>
-      <div style="display: flex;">
+    <div :class="$style.damageContainer">
+      <div
+        v-if="attackData.damage"
+        style="display: flex;"
+      >
         <div
           :class="$style.damageText"
           style="display: grid;"
         >
-          <span style="text-align: end;">dano </span>
-          <span> causado </span>
+          <span style="text-align: end;">{{$t('damageCaused').split(' ')[0]}}</span>
+          <span>{{$t('damageCaused').split(' ')[1]}} </span>
         </div>
         <span :class="$style.damageLabel">{{attackData.damage}}</span>
       </div>
@@ -51,8 +54,10 @@ export default {
   display: grid;
   grid-template-areas: "cost name damage" "text text text";
   grid-template-columns: min-content 1fr 10rem;
+  grid-template-rows: 4.5rem 1fr;
   padding: 1rem;
   align-items: center;
+  overflow: hidden;
 }
 .title {
   font-size: 3rem;
@@ -62,6 +67,11 @@ export default {
   font-size: 3rem;
   font-weight: bold;
   font-style: italic;
+}
+.damageContainer {
+  display: grid;
+  align-self: center;
+  height: 75%;
 }
 .damageText {
   display: grid;
@@ -77,5 +87,7 @@ export default {
   align-self: flex-start;
   display: grid;
   padding: 0.5rem;
+  overflow: auto;
+  height: 12rem;
 }
 </style>

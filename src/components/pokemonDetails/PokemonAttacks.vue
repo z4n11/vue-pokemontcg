@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex">
+  <div :class="$style.attackContainer">
     <div
       v-for="attack in pokemonData.attacks"
       :key="attack.name"
@@ -19,7 +19,10 @@
         style="grid-area: damage"
         :class="$style.title"
       >
-        <span :class="$style.font_xs">Dano</span> {{attack.damage}}
+        <span
+          v-if="attack.damage"
+          :class="$style.font_xs"
+        >{{$t('damage')}}</span> {{attack.damage}}
       </div>
       <div
         style="grid-area: text"
@@ -30,7 +33,7 @@
     </div>
     <Modal
       v-model="attackModalVisible"
-      width="40vw"
+      :width="isMobile ? '90vw' : '40vw'"
       height="20vh"
     >
       <AttackDetails :attackData="modalContent" />
@@ -65,6 +68,14 @@ export default {
 </script>
 
 <style lang="scss" module>
+.attackContainer {
+  display: flex;
+  @include device("mobile") {
+    display: grid;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+}
 .attackDivLayout {
   height: 10rem;
   width: 40rem;
@@ -75,7 +86,7 @@ export default {
   padding: 1rem;
   display: grid;
   grid-template-areas: "cost name damage" "text text text";
-  grid-template-columns: min-content 1fr 8rem;
+  grid-template-columns: min-content 1fr 9rem;
   grid-template-rows: 3rem 1fr;
   box-shadow: 0.5rem 1em 2rem;
   cursor: pointer;

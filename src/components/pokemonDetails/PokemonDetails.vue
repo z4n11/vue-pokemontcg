@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.pokemonDataContainer">
+  <div :class="pokemonDataContainerStyle">
     <PokemonDetailsHeader
       style="grid-area: header"
       :pokemonData="pokemonData"
@@ -9,6 +9,7 @@
       :pokemonData="pokemonData"
     />
     <PokemonDetailsRelatedCards
+      v-if="pokemonData.relatedCards"
       style="grid-area: relatedCards;"
       :pokemonData="pokemonData"
     />
@@ -30,6 +31,12 @@ export default {
       type: Object,
       retuired: true
     }
+  },
+  computed: {
+    pokemonDataContainerStyle () {
+      console.log(this.pokemonData.attacks.length)
+      return this.pokemonData.attacks.length > 1 ? [this.$style.pokemonDataContainer, this.$style.pokemonDataContainerTwoAttacks] : this.$style.pokemonDataContainer
+    }
   }
 }
 </script>
@@ -49,5 +56,25 @@ export default {
     "attack"
     "relatedCards";
   grid-template-rows: 15rem 20rem 1fr;
+  @include device("mobile") {
+    margin: 0;
+    box-shadow: 0rem 0rem 1rem;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 0;
+    padding-left: 2rem;
+    padding-top: 6rem;
+    grid-template-areas:
+      "header"
+      "attack"
+      "relatedCards";
+    grid-template-rows: 30rem 20rem 1fr;
+  }
+}
+.pokemonDataContainerTwoAttacks {
+  @include device("mobile") {
+    display: grid;
+    grid-template-rows: 30rem 36rem 1fr !important;
+  }
 }
 </style>

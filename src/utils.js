@@ -30,7 +30,90 @@ function getTypeImage (pokemonType) {
   return image
 }
 
+function unitTestPokemonData (pokemonType) {
+  const pokemonData = {
+    pokemonData: {
+      id: 'ex3-1',
+      name: 'Absol',
+      supertype: 'Pokémon',
+      subtypes: ['Basic'],
+      hp: '70',
+      types: ['Darkness'],
+      attacks: [{
+        name: 'Bad News',
+        cost: ['Darkness'],
+        convertedEnergyCost: 1,
+        damage: '',
+        text: 'If the number of cards in your opponents hand is at least 6, choose a number of cards there, without looking, until your opponent has 5 cards left.Have your opponent discard the cards you chose.'
+      },
+      {
+        name: 'Prize Count',
+        cost: ['Darkness', 'Colorless'],
+        convertedEnergyCost: 2,
+        damage: '20 + ',
+        text: 'If you have more Prize cards left than your opponent, this attack does 20 damage plus 20 more damage.'
+      }],
+      weaknesses: [{
+        type: 'Fighting',
+        value: '×2'
+      }],
+      resistances: [{
+        type: 'Psychic',
+        value: '-30'
+      }],
+      retreatCost: ['Colorless'],
+      convertedRetreatCost: 1,
+      set: {
+        id: 'ex3',
+        name: 'Dragon',
+        series: 'EX',
+        printedTotal: 97,
+        total: 97,
+        legalities: { unlimited: 'Legal' },
+        ptcgoCode: 'DR',
+        releaseDate: '2003 / 09 / 18',
+        updatedAt: '2019 / 01 / 28 16: 44: 00',
+        images: {
+          symbol: 'https://images.pokemontcg.io/ex3/symbol.png',
+          logo: 'https://images.pokemontcg.io/ex3/logo.png'
+        }
+      },
+      number: '1',
+      artist: 'Naoyo Kimura',
+      rarity: 'Rare Holo',
+      nationalPokedexNumbers: [359],
+      legalities: { unlimited: 'Legal' },
+      images: {
+        small: 'https://images.pokemontcg.io/ex3/1.png',
+        large: 'https://images.pokemontcg.io/ex3/1_hires.png'
+      },
+      tcgplayer: {
+        url: 'https://prices.pokemontcg.io/tcgplayer/ex3-1',
+        updatedAt: '2021/06/18',
+        prices: {
+          holofoil: {
+            low: 22.98,
+            mid: 36.07,
+            high: 55.78,
+            market: 50.24,
+            directLow: null
+          },
+          reverseHolofoil: {
+            low: 23.99,
+            mid: 30,
+            high: 39.49,
+            market: 24.96,
+            directLow: null
+          }
+        }
+      }
+    }
+  }
+  return pokemonData
+}
+
 export {
   getTypeColor,
-  getTypeImage
+  getTypeImage,
+  unitTestPokemonData
 }

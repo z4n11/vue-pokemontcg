@@ -1,0 +1,15 @@
+{
+  "type": " Types | Type | Types",
+  "name": "Name",
+  "hp": "HP / Hit points",
+  "damage": "Damage",
+  "damageCaused": "Damage Caused",
+  "resistances": "Resistances  | Resistance  | Resistances ",
+  "noResistances": "No resistance",
+  "weaknesses": "Weaknesses | Weakness | Weaknesses",
+  "noWeaknesses": "no weaknesses",
+  "seeRelatedCards": "See related cards | See related card | See related cards",
+  "noAbilityMessage": "This pokemon doesn't have any special abilities",
+  "cantFoundRelatedPokemon": "Unable to find related cards",
+  "searchAPokemonMessage": "Search a pokemon!"
+}

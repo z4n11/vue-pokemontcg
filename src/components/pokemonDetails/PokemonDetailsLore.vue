@@ -2,7 +2,7 @@
   <div :class="$style.pokemonLoreContainer">
     <div :class="$style.pokemonLoreLayout">
       <div :class="$style.subtitle">
-        Hp {{pokemonData.hp}}
+        {{$t('hp')}} {{pokemonData.hp}}
       </div>
       <div
         v-if="pokemonData.abilities"
@@ -13,7 +13,6 @@
           :key="ability.name"
           :class="$style.abilityContainer"
         >
-
           <span
             :style="defineTextColor"
             :class="[$style.typeText, $style.defaultText]"
@@ -25,6 +24,10 @@
           <span style="grid-area: text">{{ability.text}}</span>
         </div>
       </div>
+      <span
+        style="color: black; font-size: 1.4rem"
+        v-else
+      >{{$t('noAbilityMessage')}}</span>
     </div>
   </div>
 </template>

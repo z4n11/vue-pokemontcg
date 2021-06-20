@@ -2,10 +2,7 @@
   <div :class="$style.layout">
     <div :class="$style.logoDivArea" />
     <div :class="$style.searchbarArea">
-      <Searchbar
-        width="50rem"
-        @setSearchData="$emit('setSearchData', $event)"
-      />
+      <Searchbar @setSearchData="$emit('setSearchData', $event)" />
     </div>
     <div>
 
@@ -26,6 +23,7 @@ export default {
 .layout {
   display: grid;
   grid-template-areas: "logo searchbar socialMidias";
+  grid-template-columns: 25% 1fr 25%;
   grid-template-rows: 10rem;
   animation: changeColor 20s infinite;
 }
@@ -52,9 +50,12 @@ export default {
   }
 }
 .logoDivArea {
-  background-image: url("../../assets/sleeping.gif");
-  background-size: 15rem;
+  background-image: url(/img/sleeping.31651dd8.gif);
+  background-size: 10vw;
   background-repeat: no-repeat;
-  background-position-x: center;
+  background-position: center;
+  @include device("mobile") {
+    background-size: 20vw;
+  }
 }
 </style>

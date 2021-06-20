@@ -1,0 +1,15 @@
+{
+  "type": " Tipos | Tipo | Tipos",
+  "name": "Nome",
+  "hp": "Vida",
+  "damage": "Dano",
+  "damageCaused": "Dano causado",
+  "resistances": "Resistências  | Resistência  | Resistências ",
+  "noResistances": "Sem Resistências",
+  "weaknesses": "Fraquezas | Fraqueza | Fraquezas",
+  "noWeaknesses": "Sem fraquezas",
+  "seeRelatedCards": "Ver cartas relacionadas | Ver carta relacionada | Ver cartas relacionadas",
+  "noAbilityMessage": "Esse pokemon não possuí nenhuma habilidade especial",
+  "cantFoundRelatedPokemon": "Não foi possível encontrar cartas relacionadas",
+  "searchAPokemonMessage": "Procure um pokémon!"
+}

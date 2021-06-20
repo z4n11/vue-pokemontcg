@@ -1,26 +1,36 @@
 <template>
-  <div :class="$style.pokemonListLayout">
-    <div
-      v-for="pokemonCard in searchPokemons"
-      :key="pokemonCard.id"
+  <div>
+    <carousel
+      :class="$style.carouselContainer"
+      :perPage="1"
+      :paginationEnabled="false"
     >
-      <PokemonCard :pokemonData="pokemonCard" />
-    </div>
+      <slide
+        style="padding-bottom: 5rem;"
+        v-for="card in searchPokemons"
+        :key="card.id"
+      >
+        <PokemonCard :pokemonData="card" />
+      </slide>
+    </carousel>
   </div>
 </template>
 
 <script>
 import PokemonCard from './PokemonCard.vue'
+import { Carousel, Slide } from 'vue-carousel'
 import { mapState } from 'vuex'
 export default {
-  components: {
-    PokemonCard
-  },
   props: {
     searchData: {
       type: String,
       required: true
     }
+  },
+  components: {
+    PokemonCard,
+    Carousel,
+    Slide
   },
   computed: {
     ...mapState(['pokemonCards']),
@@ -40,16 +50,11 @@ export default {
 }
 </script>
 
-<style lang="scss" module>
-.pokemonListLayout {
-  display: flex;
-  flex-wrap: wrap;
-  overflow: auto;
-  justify-content: center;
-}
-.listBackground {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+<style lang='scss' module>
+.carouselContainer {
+  display: grid;
+  align-content: center;
+  height: 100%;
+  padding-bottom: 2rem;
 }
 </style>
